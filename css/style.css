@@ -1,0 +1,44 @@
+* {
+    font-family: 'Segoe UI';
+}
+
+body {
+    width: 500px;
+    margin: 5px;
+}
+
+h1 {
+    font-weight: bolder;
+    font-size: 1em;
+
+}
+
+.url {
+    vertical-align: bottom;
+    width: calc(100% - 10px);
+    font-size: .9em;
+    margin-bottom: 5px;
+}
+
+#query-box {
+    margin: 5px 0 0;
+}
+
+#query-box div {
+    display: flex;
+    box-sizing: border-box;
+}
+
+#query-box div input {
+    flex: 1;
+    margin: 0 -1px -1px 0;
+}
+
+#add-query, #remove-query {
+    width: 30px;
+    background: #ddd;
+    border: 0;
+    margin: 2px 0 5px;
+    text-align: center;
+    cursor: pointer;
+}
