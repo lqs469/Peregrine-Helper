@@ -1,1 +1,1 @@
-"# NTP-helper" 
+# NTP-helper
