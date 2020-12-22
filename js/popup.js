@@ -6,6 +6,7 @@ const openBtn = $('#open');
 const queryBox = $('#query-box');
 const addQuery = $('#add-query');
 const rmQuery = $('#remove-query');
+const newBtn = $('#new');
 
 const NTP = new Proxy({
     host: '',
@@ -24,8 +25,6 @@ const NTP = new Proxy({
         return true;
     }
 });
-
-
 
 const parseQuery = (url) => {
     const res = [];
@@ -111,3 +110,10 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         }
     });
 });
+
+newBtn.onclick = () => {
+    chrome.tabs.create({
+        active: true,
+        url: "https://ntp.msn.com/edge/ntp?"
+    });
+}

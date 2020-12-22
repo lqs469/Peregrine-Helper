@@ -1,9 +1,9 @@
 {
     "name": "NTP Helper",
-    "author": "AllenLee",
+    "author": "Allen.Lee",
     "manifest_version": 2,
     "version": "1.0",
-    "description": "",
+    "description": "Ntp helper for development",
     "permissions": [
         "*://*/*",
         "tabs",
@@ -35,11 +35,5 @@
             ],
             "run_at": "document_end"
         }
-    ],
-    "background": {
-        "scripts": [
-            "js/background.js"
-        ],
-        "persistent": true
-    }
+    ]
 }
