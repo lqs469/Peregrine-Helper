@@ -3,25 +3,22 @@
 }
 
 body {
-    width: 500px;
-    margin: 5px;
+    width: 650px;
+    margin: 5px 10px 20px;
 }
 
-h1 {
-    font-weight: bolder;
-    font-size: 1em;
-
+input[type="button"] {
+    cursor: pointer;
 }
 
 .url {
     vertical-align: bottom;
     width: calc(100% - 10px);
-    font-size: .9em;
-    margin-bottom: 5px;
+    margin: 10px 0 10px;
 }
 
 #query-box {
-    margin: 5px 0 0;
+    margin: 10px 0 0;
 }
 
 #query-box div {
@@ -38,7 +35,42 @@ h1 {
     width: 30px;
     background: #ddd;
     border: 0;
-    margin: 2px 0 5px;
+    margin: 3px 0 10px;
     text-align: center;
     cursor: pointer;
+}
+
+.history-item {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.history-item .history-item-url {
+    flex: 1;
+}
+
+.history-item .history-item-url span {
+    flex: 1;
+    cursor: pointer;
+    color: #0c85cc;
+    word-break: break-all;
+}
+
+.history-item .history-item-url span:hover {
+    text-decoration: underline;
+}
+
+.history-item .history-item-close {
+    display: none;
+    color: red;
+    cursor: pointer;
+}
+
+.history-item:hover .history-item-close {
+    display: inline;
+}
+
+.history-item:hover .history-item-close:hover {
+    font-weight: bolder;
 }

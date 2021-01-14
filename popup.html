@@ -1,21 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>
-    <h1>NTP Helper</h1>
+    <h2>NTP Helper</h2>
+    <input id="new" type="button" value="new" />
     <textarea class="url" id="url"></textarea>
     <br />
     <input id="copy" type="button" value="Copy" />
-    <input id="open" type="button" value="Open" />
-    <input id="new" type="button" value="new" style="float: right" />
+    <input id="open" type="button" value="Open" style="float: right" />
+
     <div id="query-box">
     </div>
+
     <input id="add-query" type="button" value="+" />
     <input id="remove-query" type="button" value="-" />
+
+    <br />
+
+    <div id="history">
+    </div>
+
 
     <script src="js/popup.js"></script>
 </body>

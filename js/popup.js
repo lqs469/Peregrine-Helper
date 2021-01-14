@@ -7,6 +7,12 @@ const queryBox = $('#query-box');
 const addQuery = $('#add-query');
 const rmQuery = $('#remove-query');
 const newBtn = $('#new');
+const historyBox = $('#history');
+
+const LS_KEY = 'NTP_HISTORY';
+let historyList = new Set([]);
+
+let tabId = null;
 
 const NTP = new Proxy({
     host: '',
@@ -58,7 +64,15 @@ rmQuery.onclick = () => {
     NTP.queryArray = NTP.queryArray;
 }
 
-const renderQueryBox = () => {
+newBtn.onclick = () => {
+    chrome.tabs.create({
+        active: true,
+        url: "https://ntp.msn.com/edge/ntp?"
+    });
+}
+
+
+function renderQueryBox() {
     while (queryBox.firstChild) {
         queryBox.removeChild(queryBox.lastChild);
     }
@@ -80,7 +94,7 @@ const renderQueryBox = () => {
     });
 }
 
-const handleChange = () => {
+function handleChange() {
     const newQueryArray = [...$('#query-box').querySelectorAll('div')]
         .map(kvBox => {
             const [keyEl, valueEl] = [...kvBox.querySelectorAll('input')];
@@ -93,10 +107,63 @@ const handleChange = () => {
     NTP.queryArray = newQueryArray;
 }
 
-chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.get(tabs[0].id, (tab) => {
-        // urlTxt.value = tab.url;
+function renderHistory() {
+    while (historyBox.firstChild) {
+        historyBox.removeChild(historyBox.lastChild);
+    }
 
+    historyList.forEach(val => {
+        const item = document.createElement('div');
+        item.className = 'history-item';
+
+        const urlBox = document.createElement('div');
+        urlBox.className = 'history-item-url';
+        const url = document.createElement('span');
+        url.innerText = val;
+        url.onclick = () => {
+            openUrl(val);
+        }
+        urlBox.appendChild(url);
+
+        const closeBtn = document.createElement('span');
+        closeBtn.className = 'history-item-close';
+        closeBtn.innerText = 'x';
+        closeBtn.onclick = () => {
+            rmHistory(val);
+        }
+
+        item.appendChild(urlBox);
+        item.appendChild(closeBtn);
+        historyBox.appendChild(item);
+    });
+}
+
+function openUrl(url) {
+    chrome.tabs.update(tabId, { url });
+
+    historyList.add(url);
+    localStorage.setItem(LS_KEY, JSON.stringify([...historyList]));
+
+    renderHistory();
+
+    NTP.host = url.split('?')[0];
+    NTP.queryArray = parseQuery(url);
+}
+
+function rmHistory(url) {
+    if (historyList.has(url)) {
+        historyList.delete(url);
+        localStorage.setItem(LS_KEY, JSON.stringify([...historyList]));
+        renderHistory();
+    }
+}
+
+
+// entry
+chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    tabId = tabs[0].id
+
+    chrome.tabs.get(tabId, (tab) => {
         NTP.host = tab.url.split('?')[0];
         NTP.queryArray = parseQuery(tab.url);
 
@@ -106,14 +173,16 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         };
 
         openBtn.onclick = () => {
-            chrome.tabs.update(tabs[0].id, { url: urlTxt.value });
+            openUrl(urlTxt.value);
         }
+
+        try {
+            historyList = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]'));
+        } catch (error) {
+            console.error(error);
+            localStorage.removeItem(LS_KEY);
+        }
+
+        renderHistory();
     });
 });
-
-newBtn.onclick = () => {
-    chrome.tabs.create({
-        active: true,
-        url: "https://ntp.msn.com/edge/ntp?"
-    });
-}
