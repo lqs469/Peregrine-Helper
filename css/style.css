@@ -1,20 +1,43 @@
-* {
-    font-family: 'Segoe UI';
+body {
+    max-height: 100vh;
+    width: 650px;
+    margin: 5px 20px 20px;
+    font-family: monospace;
+    font-size: 13.3px;
+    color: #000;
 }
 
-body {
-    width: 650px;
-    margin: 5px 10px 20px;
+h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+textarea {
+    border-radius: 0;
+    border-color: #bcbcbc;
 }
 
 input[type="button"] {
     cursor: pointer;
+    line-height: 20px;
+    border: 0;
+    background-color: #bcbcbc;
 }
 
 .url {
     vertical-align: bottom;
     width: calc(100% - 10px);
     margin: 10px 0 10px;
+}
+
+#copy {
+    color: #fff;
+    background-color: #0c85cc;
+}
+
+#open {
+    color: #fff;
+    background-color: #1c8221;
+    border: 0;
 }
 
 #query-box {
@@ -24,44 +47,57 @@ input[type="button"] {
 #query-box div {
     display: flex;
     box-sizing: border-box;
+    position: relative;
 }
 
-#query-box div input {
+#query-box div input:first-of-type {
     flex: 1;
+    line-height: 20px;
+    border: solid 1px #bcbcbc;
+    border-radius: 0;
     margin: 0 -1px -1px 0;
+}
+
+#query-box div input:last-of-type {
+    flex: 3;
+    line-height: 20px;
+    border: solid 1px #bcbcbc;
+    border-radius: 0;
+    margin: 0 0 -1px 0px;
 }
 
 #add-query, #remove-query {
     width: 30px;
-    background: #ddd;
     border: 0;
-    margin: 3px 0 10px;
     text-align: center;
     cursor: pointer;
 }
 
+#history {
+    margin-top: 20px;
+}
+
 .history-item {
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: space-around;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 .history-item .history-item-url {
-    flex: 1;
-}
-
-.history-item .history-item-url span {
-    flex: 1;
-    cursor: pointer;
-    color: #0c85cc;
-    word-break: break-all;
+    margin-left: -20px;
+    padding-left: 20px;
 }
 
 .history-item .history-item-url span:hover {
+    color: #0c85cc;
+    cursor: pointer;
     text-decoration: underline;
 }
 
 .history-item .history-item-close {
+    position: absolute;
+    left: -13px;
+    top: 0px;
+    font-size: 15px;
     display: none;
     color: red;
     cursor: pointer;
@@ -73,4 +109,13 @@ input[type="button"] {
 
 .history-item:hover .history-item-close:hover {
     font-weight: bolder;
+}
+
+.debug-btn {
+    float: right;
+}
+
+.flight-btn {
+    display: flex;
+    justify-content: flex-end;
 }

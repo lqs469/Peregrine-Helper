@@ -24,8 +24,9 @@ const NTP = new Proxy({
         if (prop === 'queryArray') {
             value = value.filter(kv => kv.key !== '' || kv.value !== '');
             obj[prop] = value;
-            renderQueryBox();
             urlTxt.value = buildQuery(obj.host, value);
+
+            subscribe.set("render_query", renderQueryBox);
         }
 
         return true;
@@ -71,40 +72,88 @@ newBtn.onclick = () => {
     });
 }
 
+const subscribe = new Map();
+function trigger(key) {
+    const cb = subscribe.get(key);
+    cb && cb();
+    subscribe.delete(key);
+}
+
+const flights = [
+    'prg-webcomp-os',
+    'prg-gitconfigs-t'
+];
 
 function renderQueryBox() {
     while (queryBox.firstChild) {
         queryBox.removeChild(queryBox.lastChild);
     }
 
-    NTP.queryArray.forEach(({ key, value }) => {
+    NTP.queryArray.forEach(({ key, value }, idx) => {
         const kvBox = document.createElement('div');
 
         const keyInput = document.createElement('input');
         keyInput.value = key;
-        keyInput.onchange = handleChange;
+        keyInput.onkeyup = () => handleChange(idx, 'key', keyInput);
         kvBox.appendChild(keyInput)
 
         const valInput = document.createElement('input');
         valInput.value = value;
-        valInput.onchange = handleChange;
+        valInput.onkeyup = () => handleChange(idx, 'value', valInput);
+        valInput.focus();
         kvBox.appendChild(valInput)
 
+        if (valInput.value.includes('spalink')) {
+            const debugBtn = document.createElement('button');
+            debugBtn.innerText = 'debug';
+            debugBtn.className = 'debug-btn';
+            debugBtn.onclick = () => {
+                if (valInput.value.includes('/debug')) {
+                    valInput.value = valInput.value.replace(/\/debug/g, '');
+                } else {
+                    valInput.value += '/debug';
+                }
+            }
+            kvBox.appendChild(debugBtn);
+        }
+
         queryBox.appendChild(kvBox);
+
+        if (valInput.value.includes('flights:')) {
+            const btnBox = document.createElement('div');
+            btnBox.className = 'flight-btn';
+
+            flights.forEach(flight => {
+                const flightBtn = document.createElement('button');
+                flightBtn.innerText = flight;
+                flightBtn.onclick = () => {
+                    const flightSet = new Set(valInput.value.replace(/flights:/g, '').split(',').filter(item => item));
+
+                    if (flightSet.has(flight)) {
+                        flightSet.delete(flight);
+                    } else {
+                        flightSet.add(flight);
+                    }
+
+                    valInput.value = `flights:${[...flightSet].join(',')}`
+                }
+                btnBox.appendChild(flightBtn);
+            });
+            queryBox.appendChild(btnBox);
+        }
+
     });
 }
 
-function handleChange() {
-    const newQueryArray = [...$('#query-box').querySelectorAll('div')]
-        .map(kvBox => {
-            const [keyEl, valueEl] = [...kvBox.querySelectorAll('input')];
-            return {
-                key: keyEl.value,
-                value: valueEl.value
-            };
-        });
+function handleChange(idx, target, el) {
+    const prevState = [...NTP.queryArray];
+    prevState[idx][target] = el.value;
 
-    NTP.queryArray = newQueryArray;
+    NTP.queryArray = prevState;
+
+    el.onblur = () => {
+        trigger("render_query");
+    }
 }
 
 function renderHistory() {
@@ -127,13 +176,13 @@ function renderHistory() {
 
         const closeBtn = document.createElement('span');
         closeBtn.className = 'history-item-close';
-        closeBtn.innerText = 'x';
+        closeBtn.innerText = `X`;
         closeBtn.onclick = () => {
             rmHistory(val);
         }
 
-        item.appendChild(urlBox);
         item.appendChild(closeBtn);
+        item.appendChild(urlBox);
         historyBox.appendChild(item);
     });
 }
@@ -183,6 +232,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             localStorage.removeItem(LS_KEY);
         }
 
+        trigger("render_query");
         renderHistory();
     });
 });

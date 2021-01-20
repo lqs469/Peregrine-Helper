@@ -7,22 +7,26 @@
 
 <body>
     <h2>NTP Helper</h2>
-    <input id="new" type="button" value="new" />
-    <textarea class="url" id="url"></textarea>
-    <br />
-    <input id="copy" type="button" value="Copy" />
-    <input id="open" type="button" value="Open" style="float: right" />
 
-    <div id="query-box">
+    <div>
+        <textarea class="url" id="url"></textarea>
     </div>
+
+    <div>
+        <input id="new" type="button" value="New" />
+        <input id="copy" type="button" value="Copy" />
+        <input id="open" type="button" value="Open" />
+    </div>
+
+
+    <div id="query-box"></div>
 
     <input id="add-query" type="button" value="+" />
     <input id="remove-query" type="button" value="-" />
 
     <br />
 
-    <div id="history">
-    </div>
+    <div id="history"></div>
 
 
     <script src="js/popup.js"></script>
