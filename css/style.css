@@ -12,8 +12,12 @@ h2 {
 }
 
 textarea {
-    border-radius: 0;
-    border-color: #bcbcbc;
+    word-break: break-word;
+    padding: 10px;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
 }
 
 input[type="button"] {
@@ -83,12 +87,12 @@ input[type="button"] {
 }
 
 .history-item .history-item-url {
-    margin-left: -20px;
-    padding-left: 20px;
+    transition: all 03s ease;
+    margin-left: -30px;
+    padding-left: 30px;
 }
 
-.history-item .history-item-url span:hover {
-    color: #0c85cc;
+.history-item .history-item-url:hover {
     cursor: pointer;
     text-decoration: underline;
 }

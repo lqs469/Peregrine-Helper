@@ -58,11 +58,13 @@ addQuery.onclick = () => {
         key: 'item',
         value: ''
     }];
+    trigger("render_query");
 }
 
 rmQuery.onclick = () => {
     NTP.queryArray.pop();
     NTP.queryArray = NTP.queryArray;
+    trigger("render_query");
 }
 
 newBtn.onclick = () => {
@@ -113,6 +115,7 @@ function renderQueryBox() {
                 } else {
                     valInput.value += '/debug';
                 }
+                handleChange(idx, 'value', valInput);
             }
             kvBox.appendChild(debugBtn);
         }
@@ -136,6 +139,8 @@ function renderQueryBox() {
                     }
 
                     valInput.value = `flights:${[...flightSet].join(',')}`
+
+                    handleChange(idx, 'value', valInput);
                 }
                 btnBox.appendChild(flightBtn);
             });
@@ -197,6 +202,8 @@ function openUrl(url) {
 
     NTP.host = url.split('?')[0];
     NTP.queryArray = parseQuery(url);
+
+    trigger("render_query");
 }
 
 function rmHistory(url) {
