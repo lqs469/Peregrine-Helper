@@ -2,7 +2,7 @@
     "name": "NTP Helper",
     "author": "Allen.Lee",
     "manifest_version": 2,
-    "version": "1.0",
+    "version": "3.0",
     "description": "Ntp helper for development",
     "permissions": [
         "*://*/*",

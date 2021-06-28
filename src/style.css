@@ -4,31 +4,41 @@ body {
     width: 800px;
     font-family: monospace;
     font-size: 12px;
-    color: #404040;
+    color: #333;
+    font-family: Segoe UI,SegoeUI,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 #NTP_HELPER-ROOT {
-    padding: 20px;
-}
-
-h2 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 10px 20px 20px;
 }
 
 textarea {
     word-break: break-word;
     padding: 10px;
     line-height: 1.5;
-    border-radius: 5px;
+    border-radius: 0;
     border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px #999;
 }
 
-input[type="button"] {
+textarea:focus {
+    outline: none;
+    background: linear-gradient(to right,  #297fb96e, #2ecc706e);
+}
+
+button {
     cursor: pointer;
-    line-height: 20px;
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 3px;
+    margin-right: 3px;
+    min-width: 24px;
     border: 0;
-    background-color: #bcbcbc;
+    border-radius: 0;
+    background-color: #dedede;
+    padding: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .url {
@@ -37,14 +47,18 @@ input[type="button"] {
     margin: 10px 0 10px;
 }
 
-#copy {
-    color: #fff;
-    background-color: #0c85cc;
+button#new, button#copy, button#open {
+    padding: 0 6px;
 }
 
-#open {
+button#copy {
     color: #fff;
-    background-color: #1c8221;
+    background-color: #297fb9;
+}
+
+button#open {
+    color: #fff;
+    background-color: #2ecc70;
     border: 0;
 }
 
@@ -52,34 +66,52 @@ input[type="button"] {
     margin: 10px 0 0;
 }
 
-#query-box div {
+#query-box .query-btn_rm {
+    font-size: 22px;
+}
+
+#query-box .query-btn_rm:hover {
+    color: red;
+}
+
+#query-box > div {
     display: flex;
     box-sizing: border-box;
     position: relative;
+    margin-bottom: 3px;
 }
 
-#query-box div input:first-of-type {
+#query-box input {
+    padding: 0 3px;
+    border: 0;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 0;
+}
+
+#query-box input:focus {
+    background: linear-gradient(to right,  #297fb96e, #2ecc706e);
+    outline: 0;
+}
+
+#query-box .key-input {
     width: 100%;
     flex: 1;
-    line-height: 20px;
-    border: solid 1px #bcbcbc;
-    border-radius: 0;
-    margin: 0 -1px -1px 0;
 }
 
-#query-box div input:last-of-type {
+#query-box .value-input {
     flex: 5;
-    line-height: 20px;
-    border: solid 1px #bcbcbc;
-    border-radius: 0;
-    margin: 0 0 -1px 0px;
+    position: relative;
 }
 
-#add-query, #remove-query {
-    width: 30px;
-    border: 0;
-    text-align: center;
-    cursor: pointer;
+#query-box .value-input input {
+    width: 100%;
+}
+
+#add-query {
+    color: #fff;
+    font-size: 22px;
+    background: linear-gradient(to right,  #297fb9, #2ecc70);
 }
 
 #history {
@@ -89,36 +121,26 @@ input[type="button"] {
 .history-item {
     margin-bottom: 10px;
     position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .history-item .history-item-url {
-    transition: all 03s ease;
-    margin-left: -30px;
-    padding-left: 30px;
+    cursor: pointer;
+    word-break: break-all;
 }
 
 .history-item .history-item-url:hover {
-    cursor: pointer;
     text-decoration: underline;
 }
 
 .history-item .history-item-close {
-    position: absolute;
-    left: -13px;
-    top: 0px;
-    font-size: 15px;
-    display: none;
-    color: red;
-    cursor: pointer;
-    line-height: 14px;
-}
-
-.history-item:hover .history-item-close {
-    display: inline;
+    font-size: 22px;
 }
 
 .history-item:hover .history-item-close:hover {
-    font-weight: bolder;
+    color: red;
 }
 
 .debug-btn {
@@ -128,4 +150,30 @@ input[type="button"] {
 .flight-btn {
     display: flex;
     justify-content: flex-end;
+}
+
+.srchList {
+    border-radius: 0;
+    position: absolute;
+    z-index: 1;
+    background: #efefef;
+    border: solid 1px #777;
+    top: 24;
+    width: 100%;
+}
+
+.srchList ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.srchList ul li {
+    cursor: pointer;
+    line-height: 24px;
+    padding: 0 6px;
+}
+
+.srchList ul li:hover {
+    background: #ccc;
 }
