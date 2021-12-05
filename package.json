@@ -1,6 +1,6 @@
 {
   "name": "ntp-helper",
-  "version": "1.0.0",
+  "version": "3.5.0",
   "description": "```\r Speed up your development.",
   "main": "index.js",
   "scripts": {
@@ -17,8 +17,11 @@
     "babel-preset-react-app": "^3.1.2",
     "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
+    "eslint": "^8.4.0",
+    "eslint-plugin-react": "^7.27.1",
     "file-loader": "^4.2.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "size-plugin": "^2.0.1",

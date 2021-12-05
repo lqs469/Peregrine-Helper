@@ -1,1 +1,27 @@
-[{"timestamp":1624290652499,"files":[{"filename":"bundle.css","previous":754,"size":0,"diff":-754},{"filename":"bundle.js","previous":27227,"size":26735,"diff":-492}]},{"timestamp":1624290604647,"files":[{"filename":"bundle.css","previous":754,"size":754,"diff":0},{"filename":"bundle.js","previous":407573,"size":27227,"diff":-380346},{"filename":"index.html","previous":416,"size":0,"diff":-416}]}]
+[
+  {
+    "timestamp": 1624290652499,
+    "files": [
+      { "filename": "bundle.css", "previous": 754, "size": 0, "diff": -754 },
+      {
+        "filename": "bundle.js",
+        "previous": 27227,
+        "size": 26735,
+        "diff": -492
+      }
+    ]
+  },
+  {
+    "timestamp": 1624290604647,
+    "files": [
+      { "filename": "bundle.css", "previous": 754, "size": 754, "diff": 0 },
+      {
+        "filename": "bundle.js",
+        "previous": 407573,
+        "size": 27227,
+        "diff": -380346
+      },
+      { "filename": "index.html", "previous": 416, "size": 0, "diff": -416 }
+    ]
+  }
+]
