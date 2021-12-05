@@ -1,10 +1,8 @@
-# NTP-helper
+# Peregrine Helper
 
-```
-Speed up your development.
+A browser extension to handle the URL for Peregrine App.
 
-A tiny dev tool helps you to browse / modify / save / convert the test url.
-```
+~~[**Install from Edge Extension Store**](https://microsoftedge.microsoft.com/addons/detail/ntp-helper/aapekjkggfgmhhkfiaaedglpmnppjcaj)~~
+(Due to some force majeure reasons, this link is no longer available)
 
-[**Install from Edge Extension Store**](https://microsoftedge.microsoft.com/addons/detail/ntp-helper/aapekjkggfgmhhkfiaaedglpmnppjcaj)
 
