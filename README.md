@@ -1,3 +1,6 @@
+<div align="center" >
+  <img src="./public/icons/logo.png" />
+</div>
 <h1 align="center">Peregrine Helper</h1>
 <p align="center">A browser extension to handle the URL for Peregrine App.</p>
 <h3 align="center">💻 with ❤ by <a href="https://twitter.com/lqs469">Allen Lee</a></h3>
