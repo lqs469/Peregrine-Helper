@@ -9,7 +9,11 @@
     <img height='36' style='border:0px;height:36px;' src='https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png' border='0' alt='Buy Me a Coffee' />
   </a>
 </p>
-<hr />
+
+<br />
+<br />
+<br />
+<br />
 <br />
 
 
