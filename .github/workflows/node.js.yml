@@ -38,7 +38,6 @@ jobs:
         INPUT_FILES: ./Peregrine-Helper.zip
       with:
         tag: latest build
-        release_name: Release latest build
         rm: true
     - name: Upload Release Asset
       id: upload-release-asset 
