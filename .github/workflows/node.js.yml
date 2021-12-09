@@ -33,10 +33,9 @@ jobs:
     - name: Create Release
       id: create_release
       uses: eine/tip@master
-      env:
-        INPUT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        INPUT_FILES: ./Peregrine-Helper.zip
       with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: ./Peregrine-Helper.zip
         tag: latest build
         rm: true
     - name: Upload Release Asset
