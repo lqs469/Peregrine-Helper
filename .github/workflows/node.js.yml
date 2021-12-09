@@ -36,7 +36,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         files: ./Peregrine-Helper.zip
-        tag: latest build
+        tag: latest_build
         rm: true
     - name: Upload Release Asset
       id: upload-release-asset 
