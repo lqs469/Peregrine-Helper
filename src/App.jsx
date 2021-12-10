@@ -10,7 +10,6 @@ import { parseQuery, buildQuery } from './helper'
 
 export const App = () => {
   const urlInput = createRef()
-
   const [currFocus, setCurrFocus] = useState(null)
   const [suggestions, setSuggestions] = useState([])
   const [tabId, setTabId] = useState('')
@@ -89,6 +88,9 @@ export const App = () => {
           case 'kids':
             query.push(['query', 'kids'])
             break
+          case 'darkmode-prong1':
+            query.push(['darkModeEnabled', 'true'])
+            break
           default:
             query.push(['item', ''])
             break
@@ -148,6 +150,8 @@ export const App = () => {
           setSuggestions(['prg-webcomp'])
         } else if (key === 'cm') {
           setSuggestions(LOCALE)
+        } else if (key === 'darkModeEnabled') {
+          setSuggestions(['false', 'true'])
         } else {
           setSuggestions([])
         }
@@ -183,6 +187,13 @@ export const App = () => {
       } else if (inputKey === 'cm') {
         query[currFocus][1] = option
         setCurrFocus()
+      } else if (inputKey === 'darkModeEnabled') {
+        if (inputVal === 'true') {
+          query[currFocus][1] = 'false'
+        } else if (inputVal === 'false') {
+          query[currFocus][1] = 'true'
+        }
+        setCurrFocus()
       } else {
         setCurrFocus()
         return
@@ -193,6 +204,18 @@ export const App = () => {
     },
     [currFocus, setUrl, url]
   )
+
+  const isNTP = useMemo(() => {
+    return url.includes(URLs.NTP)
+  }, [url])
+
+  const isProng1 = useMemo(() => {
+    return url.includes(URLs.Prong1)
+  }, [url])
+
+  const isHP = useMemo(() => {
+    return url.includes(URLs.HP)
+  }, [url])
 
   return (
     <>
@@ -298,12 +321,25 @@ export const App = () => {
       <button id="add-query" onClick={addQuery('cm')}>
         cm
       </button>
-      <button id="add-query" onClick={addQuery('enterprise')}>
-        enterprise
-      </button>
-      <button id="add-query" onClick={addQuery('kids')}>
-        kids
-      </button>
+      {isNTP ? (
+        <>
+          <button id="add-query" onClick={addQuery('enterprise')}>
+            enterprise
+          </button>
+          <button id="add-query" onClick={addQuery('kids')}>
+            kids
+          </button>
+        </>
+      ) : (
+        ''
+      )}
+      {isProng1 ? (
+        <button id="add-query" onClick={addQuery('darkmode-prong1')}>
+          Dark
+        </button>
+      ) : (
+        ''
+      )}
     </>
   )
 }

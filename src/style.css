@@ -117,11 +117,11 @@ button#open:hover {
 
 #query-box .key-input {
   width: 100%;
-  flex: 1;
+  flex: 2;
 }
 
 #query-box .value-input {
-  flex: 7;
+  flex: 8;
   position: relative;
 }
 
