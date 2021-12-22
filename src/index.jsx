@@ -29,7 +29,7 @@ document.body.onload = () => {
       const spalinkTarget = iframeDoc.body.querySelector('.bolt-header-title')
 
       if (spalinkTarget && spalinkTarget.innerText) {
-        const spalink = /#([\d.]+)\S/g.exec(spalinkTarget.innerText)[1]
+        const spalink = /#([\d.]+).*/g.exec(spalinkTarget.innerText)[1]
 
         if (spalink) {
           const spalinkEl = document.createElement('div')
